@@ -4,29 +4,30 @@ import { Observable } from 'rxjs';
 import { AuthService } from './authService';
 import { tap } from 'rxjs/operators';
 import { StateManagerService } from './state-manager.service';
-import { environment as ENV } from 'src/environments/environment';
+//import { environment as ENV } from 'src/environments/environment';
+import { environment as ENV } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
   private authToken: any;
-  private SIGNIN = '/api/auth/register';
-  private LOGIN = '/api/auth/login';
-  private CHECK_USER_NAME = '/api/auth/check-username';
-  private FORGOT_CHANGE_PASS = "/api/auth/forgotPass"
+  private SIGNIN = '/auth/register';
+  private LOGIN = '/auth/login';
+  private CHECK_USER_NAME = '/auth/check-username';
+  private FORGOT_CHANGE_PASS = "/auth/forgotPass"
 
-  private GET_USERS = '/api/users';
-  private DELETE_USER = '/api/users/deleteUser';
-  private CREATER_USER = '/api/users/createUser';
-  private CHANGE_PASS = '/api/users/changePass';
-  constructor(private http: HttpClient, private authService: AuthService,private stateManager:StateManagerService) {
+  private GET_USERS = '/users';
+  private DELETE_USER = '/users/deleteUser';
+  private CREATER_USER = '/users/createUser';
+  private CHANGE_PASS = '/users/changePass';
+  constructor(private http: HttpClient, private authService: AuthService, private stateManager: StateManagerService) {
     //this.authToken = this.authService.getToken();
     this.getToken();
   }
   getToken() {
     this.stateManager.getUserDetailsFromState().subscribe((userStateData: any) => {
-      this.authToken=userStateData.token;
+      this.authToken = userStateData.token;
     })
   }
   private apiUrl(url: string): string {
