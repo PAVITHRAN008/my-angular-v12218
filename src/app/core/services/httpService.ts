@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment as ENV } from '../../../environments/environment';
 import { AuthService } from './authService';
 import { tap } from 'rxjs/operators';
 import { StateManagerService } from './state-manager.service';
+import { environment as ENV } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'

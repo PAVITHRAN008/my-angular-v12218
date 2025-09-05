@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 import { AuthGuard } from './core/guards/authGuard.guard';
 import { LoadingInterceptor, ToastInterceptor } from './core/interceptor/app.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
       ],
       { developmentMode: !environment.production }
     ),
+    NgxsStoragePluginModule.forRoot({ key: ['userDetails'] }),
   ],
   providers: [
      AuthGuard,
