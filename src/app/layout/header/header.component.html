@@ -1,0 +1,41 @@
+<nav class="bg-white border-b border-gray-200 dark:bg-gray-900">
+  <div class="max-w-screen-xl mx-auto flex items-center justify-between p-4">
+
+    <a routerLink="/" class="flex items-center space-x-3">
+      <img src="../../../assets/images/logo.svg" class="h-8" alt="App Logo" />
+      <span class="text-2xl font-semibold  text-white">Welcome to Design</span>
+    </a>
+
+    <div class="flex items-center space-x-3 menu-container">
+      <div>
+        <p class="text-xs text-gray-500 dark:text-gray-400">Role: {{userRole}}</p>
+      </div>
+
+      <button (click)="toggleMenu()"
+        class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+        <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
+          alt="user photo" />
+      </button>
+
+      <div *ngIf="menuOpen" class="absolute right-4 top-14 w-48 bg-white rounded-lg shadow-lg dark:bg-gray-700 z-50">
+        <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-600">
+          <span class="block text-sm text-gray-900 dark:text-white">{{userName}}</span>
+          <!-- <span class="block text-sm text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span> -->
+        </div>
+        <ul class="py-2">
+          <li (click)="dashboard()"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200">
+            <button>Dashboard</button></li>
+          <li *ngIf="userRole=='Admin'" (click)="createUser()"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200"><button>Create
+              User</button></li>
+          <li (click)="changePassword()"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200"><button>Change
+              Password</button></li>
+          <li (click)="signOut()"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200"><button>Logout</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

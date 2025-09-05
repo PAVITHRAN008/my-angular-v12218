@@ -1,0 +1,70 @@
+<h2 mat-dialog-title>{{labelName}}</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="container">
+        <form [formGroup]="signupForm">
+            <div class="mb-4">
+                <label for="userName" class="block text-sm font-medium mb-1">User Name</label>
+                <input id="userName" type="text" placeholder="jillapavi@9043" formControlName="userName"
+                    class="w-full border border-gray-300 rounded-md p-2" autofocus />
+                <p *ngIf="signupForm.get('userName')?.touched && signupForm.get('userName')?.errors?.required"
+                    class="text-red-500 text-xs">Role is required</p>
+            </div>
+            <div class="mb-2">
+                <label for="userRole" class="block text-sm font-medium mb-1">User Role</label>
+                <select id="userRole" formControlName="userRole" class="w-full border border-gray-300 rounded-md p-2">
+                    <option></option>
+                    <option value="1">General User</option>
+                    <option value="2">Admin</option>
+                </select>
+                <p *ngIf="signupForm.get('userRole')?.touched && signupForm.get('userRole')?.errors?.required"
+                    class="text-red-500 text-xs">Role is required</p>
+            </div>
+            <div *ngIf="isAction != 'edit'">
+                <!-- <div class="mb-2">
+                    <label for="password" class="block text-sm font-medium mb-1">Password</label>
+                    <input id="password" type="password" placeholder="********" formControlName="password"
+                        class="w-full border border-gray-300 rounded-md p-2" />
+                    <p *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.invalid"
+                        class="text-red-500 text-xs">Password must be at least 6 characters</p>
+                </div>
+                <div class="mb-2">
+                    <label for="confirmPass" class="block text-sm font-medium mb-1">Confirm Password</label>
+                    <input id="confirmPass" type="password" placeholder="********" formControlName="confirmPass"
+                        class="w-full border border-gray-300 rounded-md p-2" />
+                    <p *ngIf="signupForm.errors?.mismatch && signupForm.get('confirmPass')?.touched"
+                        class="text-red-500 text-xs">Passwords do not match</p>
+                </div> -->
+                <div class="mb-2">
+                    <label for="password" class="block text-sm font-medium mb-1">Password</label>
+                    <input id="password" type="password" placeholder="********" formControlName="password"
+                        class="w-full border border-gray-300 rounded-md p-2" />
+                    <p *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.hasError('required')"
+                        class="text-red-500 text-xs">Password is required</p>
+                    <p *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.hasError('minlength')"
+                        class="text-red-500 text-xs">Password must be at least 6 characters</p>
+                </div>
+
+                <div class="mb-2">
+                    <label for="confirmPass" class="block text-sm font-medium mb-1">Confirm Password</label>
+                    <input id="confirmPass" type="password" placeholder="********" formControlName="confirmPass"
+                        class="w-full border border-gray-300 rounded-md p-2" />
+                    <p *ngIf="signupForm.get('confirmPass')?.touched && signupForm.get('confirmPass')?.hasError('required')"
+                        class="text-red-500 text-xs">Confirm Password is required</p>
+                    <p *ngIf="signupForm.get('confirmPass')?.touched && signupForm.get('confirmPass')?.hasError('mismatch')"
+                        class="text-red-500 text-xs">Passwords do not match</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <div class="flex space-x-2">
+        <button mat-dialog-close class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+            Cancel
+        </button>
+        <button [disabled]="signupForm.invalid" [mat-dialog-close]="true" type="button" (click)="onSubmit()"
+            class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
+            {{labelName}}
+        </button>
+    </div>
+</mat-dialog-actions>

@@ -1,0 +1,1 @@
+export { UserDetails, UserDetailsModel, newUserDetails } from './user-details.model';

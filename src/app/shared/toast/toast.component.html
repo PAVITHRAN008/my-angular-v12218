@@ -1,0 +1,10 @@
+<div class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 space-y-2">
+  <div *ngFor="let toast of toasts"
+       class="max-w-xs w-full px-4 py-3 rounded-lg shadow-lg text-white animate-slideDown"
+       [ngClass]="{
+         'bg-green-500': toast.type === 'success',
+         'bg-red-500': toast.type === 'error'
+       }">
+    {{ toast.text }}
+  </div>
+</div>
